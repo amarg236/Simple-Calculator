@@ -1,0 +1,74 @@
+<html>
+
+<head>
+  <title>Simple Calculator</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row" style="text-align:center;"><h1 style="font-weight:bolder;">Simple Calculator</h1></div>
+    <form class="form-inline" style="border:1px solid #dddd; background-color:#f5f5f5;padding:15px;border-radius:10px;text-align:center;" action="index.html" @submit.prevent="calculate" method="post">
+      <input number v-model="first" class="form-control" >
+      <select v-model="operator" class="form-control">
+        <option selected>+</option>
+        <option >/</option>
+        <option >*</option>
+      </select>
+      <input number v-model="second" class="form-control">
+      <button class="btn-primary btn btn-md" @click.prevent="calculate" >
+        Calculate
+      </button>
+    </form>
+    <div style="border:1px solid #dddd; height:60%; background-color:#f5f5f5;padding:10px;border-radius:10px;text-align:center;">
+              <h1>Result</h1>
+      <div style="margin-left:auto; margin-right:auto;vertica-align:middle;border-radius:10px;background-color:white;height:250px;width:300px;">
+        <p style="font-size:105px;font-weight:bolder;padding:30px;">
+           {{result}}
+        </p>
+    </div>
+    </div>
+  </div>
+<p style="text-align:center;margin-top:5px;">Project By:  <a href="http://sonamgurung.me">Sonam Gurung</a></p>
+
+</body>
+
+<script src="http://cdnjs.cloudflare.com/ajax/libs/vue/1.0.26/vue.js"></script>
+<script type="text/javascript">
+
+new Vue({
+  el: 'body',
+  data:{
+    first: 2,
+    second: 5,
+    result: null,
+  },
+  computed:{
+    calculate:function(){
+      // event.preventDefault();
+      switch (this.operator) {
+        case "+":
+        this.result = Math.round(parseFloat(this.first)+parseFloat(this.second),2);
+          break;
+
+        case "*":
+        this.result =  Math.round(parseFloat(this.first)*parseFloat(this.second),2);
+          break;
+
+        case "/":
+        this.result = Math.round(parseFloat(this.first) / parseFloat(this.second),2);
+          break;
+
+      }
+    }
+  }
+})
+</script>
+
+</html>
